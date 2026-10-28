@@ -1,171 +1,123 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="theme-color" content="#060911">
-    <meta name="robots" content="noindex, noarchive, nosnippet">
-
     <!-- Web Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'none'; object-src 'none';">
 
-    <title>01010011 01000101 01000011 01010101 01010010 01001001 01010100 01011001</title>
-</head>
-<body style="background:#060911; margin:0; padding:0; overflow:hidden;">
+    <!-- Anti-Inspect & Security Lockdown System -->
+    <script>
+    (function() {
+        'use strict';
 
-<!--
-====================================================================================================
-[ENCRYPTED BINARY PAYLOAD - ACCESS RESTRICTED - SECURITY DIRECTIVE ACTIVE]
-====================================================================================================
-01000001 01000011 01000011 01000101 01010011 01010011 00100000 01000100 01000101 01001110 01001001 01000101 01000100
-01010011 01000101 01000011 01010101 01010010 01001001 01010100 01011001 00100000 01010000 01010010 01001111 01010100
-01001111 01000011 01001111 01001100 00100000 01000101 01001110 01000011 01010010 01011001 01010000 01010100 01000101
-01000100 00100000 01010011 01010100 01010010 01000101 01000001 01001101 00100000 01001111 01001110 01001100 01011001
-====================================================================================================
--->
+        // 1. Anti-Clickjacking
+        if (window.top !== window.self) {
+            try { window.top.location = window.self.location; } catch(e) { window.location = 'about:blank'; }
+        }
 
-<script>
-(function() {
-    'use strict';
-
-    // 1. Anti-Clickjacking
-    if (window.top !== window.self) {
-        try { window.top.location = window.self.location; } catch (e) { window.location = 'about:blank'; }
-    }
-
-    // 2. Disable Right-Click
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        return false;
-    }, true);
-
-    // 3. Prevent DevTools & Source View Keyboard Shortcuts
-    document.addEventListener('keydown', function(e) {
-        if (
-            e.keyCode === 123 || // F12
-            (e.ctrlKey && e.shiftKey && [73, 74, 67, 75, 77].indexOf(e.keyCode) !== -1) || // Ctrl+Shift+I/J/C/K/M
-            (e.metaKey && e.altKey && [73, 74, 67, 75, 77].indexOf(e.keyCode) !== -1) || // Mac Cmd+Opt+I/J/C/K/M
-            (e.ctrlKey && [85, 83, 80].indexOf(e.keyCode) !== -1) || // Ctrl+U, Ctrl+S, Ctrl+P
-            (e.metaKey && [85, 83, 80].indexOf(e.keyCode) !== -1)
-        ) {
+        // 2. Disable Context Menu (Right Click)
+        document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             e.stopPropagation();
             return false;
-        }
-    }, true);
+        }, true);
 
-    // 4. Console Neutralization
-    try {
-        const _noop = function() {};
-        ['log', 'debug', 'info', 'warn', 'error', 'table', 'trace', 'dir', 'dirxml'].forEach(function(fn) {
-            console[fn] = _noop;
-        });
-    } catch(err) {}
+        // 3. Prevent DevTools & Source View Keyboard Shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (
+                e.keyCode === 123 || // F12
+                (e.ctrlKey && e.shiftKey && [73, 74, 67, 75, 77].indexOf(e.keyCode) !== -1) || // Ctrl+Shift+I/J/C/K/M
+                (e.metaKey && e.altKey && [73, 74, 67, 75, 77].indexOf(e.keyCode) !== -1) || // Mac Cmd+Opt+I/J/C/K/M
+                (e.ctrlKey && [85, 83, 80].indexOf(e.keyCode) !== -1) || // Ctrl+U, Ctrl+S, Ctrl+P
+                (e.metaKey && [85, 83, 80].indexOf(e.keyCode) !== -1)
+            ) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        }, true);
 
-    // 5. Binary Decoy Generator
-    function getBinaryDecoy() {
-        const pattern = [
-            "01010011 01000101 01000011 01010101 01010010 01001001 01010100 01011001",
-            "00100000 01010110 01001001 01001111 01001100 01000001 01010100 01001001",
-            "01001111 01001110 00100000 01000100 01000101 01010100 01000101 01000011",
-            "01010100 01000101 01000100 00111010 00100000 01000001 01000011 01000011",
-            "01000101 01010011 01010011 00100000 01010100 01000101 01010010 01001101",
-            "01001001 01001110 01000001 01010100 01000101 01000100 00100000 00101101",
-            "00100000 01000011 01001111 01000100 01000101 00100000 01001100 01001111",
-            "01000011 01001011 01000101 01000100 00100000 01000010 01011001 00100000",
-            "01010011 01000101 01000011 01010101 01010010 01001001 01010100 01011001"
-        ];
-        let out = '';
-        for (let i = 0; i < 450; i++) {
-            out += pattern[i % pattern.length] + '\n';
-        }
-        return out;
-    }
-
-    let isLocked = false;
-    function triggerLockdown() {
-        if (isLocked) return;
-        isLocked = true;
-        
+        // 4. Console Neutralization
         try {
-            document.title = "01000101 01001110 01000011 01010010 01011001 01010000 01010100 01000101 01000100";
-            document.documentElement.innerHTML = '<head><title>01000101 01001110 01000011 01010010 01011001 01010000 01010100 01000101 01000100</title><style>html,body{background:#000!important;color:#00ff41!important;margin:0!important;padding:24px!important;font-family:Courier,monospace!important;font-size:13px!important;line-height:1.4!important;overflow:hidden!important;user-select:none!important;}</style></head><body><div id="binary-stream-lockdown" style="word-break:break-all;"><pre>' + getBinaryDecoy() + '</pre></div></body>';
-        } catch(e) {}
+            const _noop = function() {};
+            ['log', 'debug', 'info', 'warn', 'error', 'table', 'trace', 'dir', 'dirxml'].forEach(function(fn) {
+                console[fn] = _noop;
+            });
+        } catch(err) {}
 
-        setInterval(function() {
-            try { (function() { return false; }['constructor']('debugger')['call']()); } catch(e) {}
-        }, 50);
-    }
-
-    // 6. Docked DevTools Detection (Resize Threshold on Desktop)
-    function detectDevToolsResize() {
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return;
-        const diffW = window.outerWidth - window.innerWidth;
-        const diffH = window.outerHeight - window.innerHeight;
-        if (diffW > 160 || diffH > 160) {
-            triggerLockdown();
+        // 5. Binary Decoy Generator
+        function getBinaryDecoy() {
+            const pattern = [
+                "01010011 01000101 01000011 01010101 01010010 01001001 01010100 01011001",
+                "00100000 01010110 01001001 01001111 01001100 01000001 01010100 01001001",
+                "01001111 01001110 00100000 01000100 01000101 01010100 01000101 01000011",
+                "01010100 01000101 01000100 00111010 00100000 01000001 01000011 01000011",
+                "01000101 01010011 01010011 00100000 01010100 01000101 01010010 01001101",
+                "01001001 01001110 01000001 01010100 01000101 01000100 00100000 00101101",
+                "00100000 01000011 01001111 01000100 01000101 00100000 01001100 01001111",
+                "01000011 01001011 01000101 01000100 00100000 01000010 01011001 00100000"
+            ];
+            let out = '';
+            for (let i = 0; i < 400; i++) {
+                out += pattern[i % pattern.length] + '\n';
+            }
+            return out;
         }
-    }
-    window.addEventListener('resize', detectDevToolsResize);
-    setInterval(detectDevToolsResize, 1000);
 
-    // 7. Undocked DevTools Detection
-    const detectorObj = new Image();
-    Object.defineProperty(detectorObj, 'id', {
-        get: function() {
-            triggerLockdown();
-        }
-    });
-    setInterval(function() {
-        if (!isLocked) {
-            console.log(detectorObj);
-            console.clear();
-        }
-    }, 1200);
+        let isLocked = false;
+        function triggerLockdown() {
+            if (isLocked) return;
+            isLocked = true;
+            
+            try {
+                document.title = "01000101 01001110 01000011 01010010 01011001 01010000 01010100 01000101 01000100";
+                document.documentElement.innerHTML = '<head><title>ENCRYPTED</title><style>html,body{background:#000!important;color:#00ff41!important;margin:0!important;padding:24px!important;font-family:Courier,monospace!important;font-size:13px!important;line-height:1.4!important;overflow:hidden!important;user-select:none!important;}</style></head><body><pre>' + getBinaryDecoy() + '</pre></body>';
+            } catch(e) {}
 
-    // 8. Debugger Timing Verification
-    setInterval(function() {
-        if (!isLocked) {
-            const start = performance.now();
-            try { (function() { return false; }['constructor']('debugger')['call']()); } catch(e) {}
-            if (performance.now() - start > 100) {
+            setInterval(function() {
+                try { (function() { return false; }['constructor']('debugger')['call']()); } catch(e) {}
+            }, 50);
+        }
+
+        // 6. Docked DevTools Detection (Resize Threshold on Desktop)
+        function detectDevToolsResize() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return;
+            const diffW = window.outerWidth - window.innerWidth;
+            const diffH = window.outerHeight - window.innerHeight;
+            if (diffW > 160 || diffH > 160) {
                 triggerLockdown();
             }
         }
-    }, 2000);
+        window.addEventListener('resize', detectDevToolsResize);
+        setInterval(detectDevToolsResize, 1000);
 
-    // 9. In-Memory Payload Decryption & Execution
-    window.addEventListener('DOMContentLoaded', function() {
-        if (isLocked) return;
-        
-        // Fetch or decode client payload
-        const rawPayload = document.getElementById('__ENCRYPTED_DATA__');
-        if (rawPayload && rawPayload.textContent) {
-            try {
-                const decodedStr = new TextDecoder().decode(
-                    Uint8Array.from(atob(rawPayload.textContent.trim()), function(c) { return c.charCodeAt(0); })
-                );
-                document.open();
-                document.write(decodedStr);
-                document.close();
-            } catch(e) {}
-        }
-    });
-})();
-</script>
+        // 7. Undocked DevTools Detection
+        const detectorObj = new Image();
+        Object.defineProperty(detectorObj, 'id', {
+            get: function() {
+                triggerLockdown();
+            }
+        });
+        setInterval(function() {
+            if (!isLocked) {
+                console.log(detectorObj);
+                console.clear();
+            }
+        }, 1200);
 
-<div id="__ENCRYPTED_DATA__" style="display:none;">
-<!-- The full encoded Base64 payload of your index(3).html site goes here -->
-</div>
+        // 8. Debugger Timing Verification
+        setInterval(function() {
+            if (!isLocked) {
+                const start = performance.now();
+                try { (function() { return false; }['constructor']('debugger')['call']()); } catch(e) {}
+                if (performance.now() - start > 100) {
+                    triggerLockdown();
+                }
+            }
+        }, 2000);
+    })();
+    </script>
 
-</body>
-</html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="theme-color" content="#060911">
